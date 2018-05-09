@@ -1,0 +1,31 @@
+.panel-heading{
+    background-color: lightgray;
+}
+.panel-body{
+    background-color: ghostwhite;
+}
+.character-list{
+    min-width: 600px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.character-list > .row > .col-xs-2{
+    min-width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: solid 0.1px gray;
+    padding: 0.5rem 0 0.5rem 0;
+    text-align: center;
+}
+.character-list > .row > .col-xs-5{
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: solid 0.1px gray;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.pagination{
+    margin-top: 1rem;
+}

@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/nsna.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -39,6 +40,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li>
+                            <a class="nav-link" href="http://whyimoeat.blogspot.jp/2017/01/mou-mienai-rpg.html" target="_blank">
+                                もう（中略）見えないRPGとは？
+                            </a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>

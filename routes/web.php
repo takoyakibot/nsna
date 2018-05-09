@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('top');
-});
+Route::get('/', 'CharacterController@index');
 
 //Route::get('characters', function () { return view('characters'); });
 
