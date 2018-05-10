@@ -1,15 +1,16 @@
-.panel-heading{
+/*トップページ*/
+.panel-heading {
     background-color: lightgray;
 }
-.panel-body{
+.panel-body {
     background-color: ghostwhite;
 }
-.character-list{
+.character-list {
     min-width: 600px;
     margin-left: 1rem;
     margin-right: 1rem;
 }
-.character-list > .row > .col-xs-2{
+.character-list > .row > .col-2 {
     min-width: 100px;
     overflow: hidden;
     white-space: nowrap;
@@ -18,7 +19,7 @@
     padding: 0.5rem 0 0.5rem 0;
     text-align: center;
 }
-.character-list > .row > .col-xs-5{
+.character-list > .row > .col-5 {
     width: 250px;
     overflow: hidden;
     white-space: nowrap;
@@ -26,6 +27,25 @@
     border: solid 0.1px gray;
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
-.pagination{
+.pagination {
     margin-top: 1rem;
+}
+/*キャラクターシート*/
+.actor-row > label {
+    background-color: #f8f9fa; /* bg-light */
+    border: solid 0.1px rgba(0,0,0,.125);
+}
+.no-border {
+    border: solid 1px rgba(0,0,0,.125);
+}
+.col-form-label {
+    text-align: center;
+}
+.overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.card-header {
+    text-align: center;
 }

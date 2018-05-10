@@ -20,6 +20,12 @@ class CharactersTableSeeder extends Seeder
                 'uid' => $faker->unique()->randomNumber(),
                 'player_name' => $faker->unique()->userName(),
                 'actor_name' => $faker->unique()->userName(),
+                'omote1_id' => $faker->numberBetween(1, 100),
+                'omote2_id' => $faker->numberBetween(1, 100),
+                'ura1_id' => $faker->numberBetween(1, 100),
+                'ura2_id' => $faker->numberBetween(1, 100),
+                'ura3_id' => $faker->numberBetween(1, 100),
+                'ura4_id' => $faker->numberBetween(1, 100),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
             ]);

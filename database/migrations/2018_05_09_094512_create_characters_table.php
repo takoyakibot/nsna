@@ -23,16 +23,14 @@ class CreateCharactersTable extends Migration
             $table->string('age')->nullable();
             $table->string('gender')->nullable();
             $table->string('photo')->nullable();
-            $table->string('good')->nullable();
-            $table->string('evil')->nullable();
-            $table->string('social')->nullable();
+            $table->tinyInteger('good')->nullable();
+            $table->tinyInteger('evil')->nullable();
+            $table->tinyInteger('social')->nullable();
             $table->string('most_important')->nullable();
             $table->integer('omote1_id')->unsigned()->nullable();
             $table->string('omote1_free')->nullable();
             $table->integer('omote2_id')->unsigned()->nullable();
             $table->string('omote2_free')->nullable();
-            $table->integer('omote3_id')->unsigned()->nullable();
-            $table->string('omote3_free')->nullable();
             $table->integer('ura1_id')->unsigned()->nullable();
             $table->string('ura1_free')->nullable();
             $table->integer('ura2_id')->unsigned()->nullable();
@@ -41,8 +39,6 @@ class CreateCharactersTable extends Migration
             $table->string('ura3_free')->nullable();
             $table->integer('ura4_id')->unsigned()->nullable();
             $table->string('ura4_free')->nullable();
-            $table->integer('ura5_id')->unsigned()->nullable();
-            $table->string('ura5_free')->nullable();
             $table->string('kill1')->nullable();
             $table->string('kill2')->nullable();
             $table->string('kill3')->nullable();

@@ -13,6 +13,10 @@
 
 Route::get('/', 'CharacterController@index');
 
+Route::get('/actor', 'CharacterController@show');
+Route::get('/actor/new', 'CharacterController@createOre');
+Route::get('/actor/{id_rand}', 'CharacterController@show');
+
 //Route::get('characters', function () { return view('characters'); });
 
 
