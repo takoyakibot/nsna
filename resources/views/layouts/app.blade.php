@@ -79,7 +79,7 @@
             @yield('content')
         </main>
 
-        <footer class="text-center text-muted py-4">
+        <footer class="text-center text-muted p-4">
             当サイトは、みんな大好き<s>おのれまさしげ</s> <a href="https://character-sheets.appspot.com/" target="_blank">キャラクターシート倉庫</a>様を大いにパクりつつ作成しました。
         </footer>
     </div>
