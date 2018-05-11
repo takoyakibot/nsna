@@ -8,7 +8,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
+    <title>@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -76,6 +77,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="text-center text-muted py-4 bg-light">
+            当サイトは、みんな大好き<s>おのれまさしげ</s> <a href="https://character-sheets.appspot.com/" target="_blank">キャラクターシート倉庫</a>様を大いにパクりつつ作成しました。
+        </footer>
     </div>
 </body>
 </html>

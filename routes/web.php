@@ -16,6 +16,7 @@ Route::get('/', 'CharacterController@index');
 Route::get('/actor', 'CharacterController@show');
 Route::get('/actor/new', 'CharacterController@createOre');
 Route::get('/actor/{id_rand}', 'CharacterController@show');
+Route::post('/actor/{id_rand}', 'CharacterController@submit');
 
 //Route::get('characters', function () { return view('characters'); });
 

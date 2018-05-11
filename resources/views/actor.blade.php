@@ -1,4 +1,5 @@
 @php
+$title = null_escape($character->actor_name, '名称未設定');
 $good = 12;
 $evil = 12;
 $social = 17;
@@ -35,7 +36,63 @@ $kill_list = [
 @extends('layouts.app')
 
 @section('content')
-<form action="{{ url('actor/').$character->id_rand }}" method="post">
+<script src="{{ asset('js/sha256.js') }}" defer></script>
+<script>
+    $(function(){
+        // ページ離脱イベント
+        $(window).on('beforeunload',function(){
+            return('ページ移動を確認します');
+        });
+        // Submitの場合のみ　ページ離脱イベント解除
+        $('form').on('submit',function(){
+            $(window).off('beforeunload');
+        });
+    });
+</script>
+<script type="text/javascript">
+    function checkPassword ()
+    {
+        try
+        {
+            // passwordを取得
+            var p = document.f.password.value;
+
+            // 空文字でなければハッシュ値を生成
+            if (p != '') document.f.password_hash.value = getHash(p);
+
+            var current_password = '{{ $character->password_hash }}';
+
+            // 現在のパスワードが空なら何が来てもtrue（パスワードは新しいものに変わる）
+            if (current_password == '' || current_password == document.f.password_hash.value)
+            {
+                // パスワードはPOSTさせない
+                document.f.password.value = '';
+
+                alert('保存するです');
+
+                return true;
+            }
+
+            alert('パスワードが違います');
+            return false;
+        }
+        catch (e)
+        {
+            console.log(e);
+            alert('やばい');
+        }
+        return false;
+    }
+
+    function getHash(str)
+    {
+        var shaObj = new jsSHA("SHA-256", "TEXT");
+        shaObj.update(str);
+        var hash = shaObj.getHash("HEX");
+        return hash;
+    }
+</script>
+<form action="{{ url('actor/'.$character->id_rand) }}" method="post" name="f">
     {{ csrf_field() }}
     {{ method_field('POST') }}
     <div class="container">
@@ -83,8 +140,8 @@ $kill_list = [
                         </label>
                     </div>
 
-                    <label for="must_important" class="col-form-label col-4 mb-1 overflow">最も大切な人（物）</label>
-                    <div class="col-8 pl-1 pr-0 pr-md-1"><input type="text" name="must_important" class="form-control no-border" value="{{ old('must_important', null_escape($character->must_important)) }}"></div>
+                    <label for="most_important" class="col-form-label col-4 mb-1 overflow">最も大切な人（物）</label>
+                    <div class="col-8 pl-1 pr-0 pr-md-1"><input type="text" name="most_important" class="form-control no-border" value="{{ old('most_important', null_escape($character->most_important)) }}"></div>
                 </div>
             </div>
 
@@ -113,22 +170,13 @@ $kill_list = [
         </div>
 
         <div class="row mb-3">
-            <div class="col-12 px-3">
-                <div class="row">
-                    <div class="col-3 col-md-4"></div>
-                    <div class="col-6 col-md-4 text-right mb-1">
-                        <input type="submit" class="btn @if (empty($character->omote_id1)) btn-warning @else btn-secondary @endif form-control py-1" name="getOre" value="表の顔・裏の顔を決める" @if (! empty($character->omote_id1)) disabled @endif>
-                    </div>
-                    <div class="col-3 col-md-4"></div>
-                </div>
-            </div>
             <div class="col-12 col-md-6 px-1 mb-1">
                 <div class="card">
                     <div class="card-header bg-light">表の顔</div>
                     <div class="card-body">
                         <div class="card-text">
-                            @foreach ([0, 1] as $i)
-                            <p><i>{{ null_escape($ore[$i]->text1, $ore_sample_list[$i]) }}
+                            @foreach ([0,1] as $i)
+                            <p><i>{{ null_escape($ore[$i]->text1) }}
                             @if (! empty($ore[$i]->text2))
                             <input type="text" name="{{ 'omote'.($i+1).'_free' }}" value="{{ old('omote'.($i+1).'_free', null_escape($ore_free_list[$i])) }}">
                             {{ null_escape($ore[$i]->text2) }}
@@ -144,10 +192,10 @@ $kill_list = [
                     <div class="card-header bg-dark text-white">裏の顔</div>
                     <div class="card-body">
                         <div class="card-text">
-                            @foreach ([2, 3, 4, 5] as $i)
-                            <p><i>{{ null_escape($ore[$i]->text1, $ore_sample_list[$i]) }}
+                            @foreach ([2,3,4,5] as $i)
+                            <p><i>{{ null_escape($ore[$i]->text1) }}
                             @if (! empty($ore[$i]->text2))
-                            <input type="text" name="{{ 'ura'.($i+1).'_free' }}" value="{{ old('ura'.($i+1).'_free', null_escape($ore_free_list[$i])) }}">
+                            <input type="text" name="{{ 'ura'.($i-1).'_free' }}" value="{{ old('ura'.($i-1).'_free', null_escape($ore_free_list[$i])) }}">
                             {{ null_escape($ore[$i]->text2) }}
                             @endif
                             </i> {{ $ore_footer_list[$i] }}</p>
@@ -156,6 +204,13 @@ $kill_list = [
                     </div>
                 </div>
             </div>
+
+            <input type="hidden" name="omote1_id" value="{{ $character->omote1_id }}">
+            <input type="hidden" name="omote2_id" value="{{ $character->omote2_id }}">
+            <input type="hidden" name="ura1_id" value="{{ $character->ura1_id }}">
+            <input type="hidden" name="ura2_id" value="{{ $character->ura2_id }}">
+            <input type="hidden" name="ura3_id" value="{{ $character->ura3_id }}">
+            <input type="hidden" name="ura4_id" value="{{ $character->ura4_id }}">
         </div>
 
         <div class="row mb-3">
@@ -176,12 +231,19 @@ $kill_list = [
 
         <div class="row my-5">
             <div class="col-12 px-3">
-                <div class="row">
-                    <div class="col-3 col-md-4"></div>
-                    <div class="col-6 col-md-4 text-right mb-1">
-                        <input type="submit" class="btn btn-primary form-control py-1" name="save" value="保存">
+                <div class="row mb-1">
+                    <div class="col-3 col-md-4 mb-1 px-1">
+                        <input type="password" class="form-control" id="password" name="password" value="">
                     </div>
-                    <div class="col-3 col-md-4"></div>
+                    <div class="col-3 col-md-4 mb-1">
+                        <input type="submit" class="btn btn-primary form-control" name="save" value="保存" onclick="return checkPassword();">
+                    </div>
+                    <div class="col-3 col-md-4 mb-1">
+                        <input type="hidden" class="form-control" name="password_hash" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col small">※パスワードは入力しないでも保存ができますが、一度入力するとそれ以降同じパスワードの入力が必要になります。</div>
                 </div>
             </div>
         </div>
