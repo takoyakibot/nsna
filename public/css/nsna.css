@@ -5,31 +5,41 @@
 .panel-body {
     background-color: ghostwhite;
 }
-.character-list {
-    min-width: 600px;
-    margin-left: 1rem;
-    margin-right: 1rem;
+footer {
+    background-color: ghostwhite;
 }
-.character-list > .row > .col-2 {
-    min-width: 100px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border: solid 0.1px gray;
-    padding: 0.5rem 0 0.5rem 0;
-    text-align: center;
+@media (min-width: 34em) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
 }
-.character-list > .row > .col-5 {
-    width: 250px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border: solid 0.1px gray;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+
+@media (min-width: 48em) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
 }
-.pagination {
-    margin-top: 1rem;
+
+@media (min-width: 62em) {
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
 }
+
+@media (min-width: 75em) {
+    .card-columns {
+        -webkit-column-count: 5;
+        -moz-column-count: 5;
+        column-count: 5;
+    }
+}
+
 /*キャラクターシート*/
 .actor-row > label {
     background-color: #f8f9fa; /* bg-light */

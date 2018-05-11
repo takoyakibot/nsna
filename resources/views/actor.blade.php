@@ -161,7 +161,7 @@ $kill_list = [
                 <div class="card">
                     <div class="card-header">メモ</div>
                     <div class="card-body">
-                        <div class="card-text row">
+                        <div class="row">
                             <textarea name="memo" class="form-control" style="min-height: 100px;">{{ old('memo', null_escape($character->memo)) }}</textarea>
                         </div>
                     </div>
@@ -174,16 +174,14 @@ $kill_list = [
                 <div class="card">
                     <div class="card-header bg-light">表の顔</div>
                     <div class="card-body">
-                        <div class="card-text">
-                            @foreach ([0,1] as $i)
-                            <p><i>{{ null_escape($ore[$i]->text1) }}
-                            @if (! empty($ore[$i]->text2))
-                            <input type="text" name="{{ 'omote'.($i+1).'_free' }}" value="{{ old('omote'.($i+1).'_free', null_escape($ore_free_list[$i])) }}">
-                            {{ null_escape($ore[$i]->text2) }}
-                            @endif
-                            </i> {{ $ore_footer_list[$i] }}</p>
-                            @endforeach
-                        </div>
+                        @foreach ([0,1] as $i)
+                        <p class="card-text"><i>{{ null_escape($ore[$i]->text1) }}
+                        @if (! empty($ore[$i]->text2))
+                        <input type="text" name="{{ 'omote'.($i+1).'_free' }}" value="{{ old('omote'.($i+1).'_free', null_escape($ore_free_list[$i])) }}">
+                        {{ null_escape($ore[$i]->text2) }}
+                        @endif
+                        </i> {{ $ore_footer_list[$i] }}</p>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -191,16 +189,14 @@ $kill_list = [
                 <div class="card">
                     <div class="card-header bg-dark text-white">裏の顔</div>
                     <div class="card-body">
-                        <div class="card-text">
-                            @foreach ([2,3,4,5] as $i)
-                            <p><i>{{ null_escape($ore[$i]->text1) }}
-                            @if (! empty($ore[$i]->text2))
-                            <input type="text" name="{{ 'ura'.($i-1).'_free' }}" value="{{ old('ura'.($i-1).'_free', null_escape($ore_free_list[$i])) }}">
-                            {{ null_escape($ore[$i]->text2) }}
-                            @endif
-                            </i> {{ $ore_footer_list[$i] }}</p>
-                            @endforeach
-                        </div>
+                        @foreach ([2,3,4,5] as $i)
+                        <p class="card-text"><i>{{ null_escape($ore[$i]->text1) }}
+                        @if (! empty($ore[$i]->text2))
+                        <input type="text" name="{{ 'ura'.($i-1).'_free' }}" value="{{ old('ura'.($i-1).'_free', null_escape($ore_free_list[$i])) }}">
+                        {{ null_escape($ore[$i]->text2) }}
+                        @endif
+                        </i> {{ $ore_footer_list[$i] }}</p>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -218,7 +214,7 @@ $kill_list = [
                 <div class="card">
                     <div class="card-header bg-danger text-white">『殺ス』リスト</div>
                     <div class="card-body bg-dark">
-                        <div class="card-text row">
+                        <div class="row">
                             @foreach ([0,1,2,3,4] as $i)
                             <label class="col-form-label col-4 mb-1 text-center no-border bg-light">{{ $kill_head_list[$i] }}</label>
                             <div class="col-8 pl-1 pr-0"><input type="text" class="form-control no-border" name="{{ 'kill'.($i+1) }}" value="{{ old('kill'.($i+1), null_escape($kill_list[$i])) }}"></div>
