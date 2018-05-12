@@ -18,15 +18,13 @@
             <div class="card">
                 <a href="{{ url('actor').'/'.$c->id_rand }}">
                     <img class="card-img-top" src="{{ url(null_escape($c->photo, 'img/nsna.png')) }}">
-                    <div class="card-header text-dark">
-                        <h4 class="card-title mb-0">{{ null_escape($c->actor_name, '名称未設定') }}</h4>
+                    <div class="card-header">
+                        <h4 class="card-title text-dark mb-0">{{ null_escape($c->player_name, '近日公開') }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-dark">{{ null_escape($c->actor_name, '近日公開') }}</p>
                     </div>
                 </a>
-                <div class="card-body">
-                    <p class="card-text">
-                        演者：{{ $c->player_name }}
-                    </p>
-                </div>
             </div>
             @endforeach
         </div>
