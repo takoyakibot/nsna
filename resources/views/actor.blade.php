@@ -172,7 +172,7 @@ $kill_list = [
                     <div class="row px-1 mb-3">
                         <label for="photo" class="col-form-label col-12 mb-1 no-border bg-light text-center">在りし日の写真</label>
                         <label class="col-form-label col-12 mb-1 no-border bg-light text-center">
-                            <img src="{{ null_escape($character->photo, url('img/nsna.png')) }}" class="my-1 bg-white">
+                            <img src="{{ url(null_escape($character->photo, 'img/nsna.png')) }}" class="my-1 bg-white">
                         </label>
                         <label class="col-12 col-form-label text-right"><span class="btn disabled btn-info py-1">写真を飾る<input type="file" disabled style="display:none;"></span></label>
                     </div>
