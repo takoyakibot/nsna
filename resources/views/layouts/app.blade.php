@@ -5,6 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- カード表示 -->
+    <meta content='summary' name='twitter:card'/>
+    <meta content='{{ url('/') }}' name='twitter:domain'/>
+    <meta content='{{ url($_SERVER["REQUEST_URI"]) }}' name='twitter:url'/>
+    <meta content='@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}' name='twitter:title'/>
+    <meta content='{{ env('APP_DESC') }}' name='twitter:description'/>
+    @if (Request::is('/'))<meta content='{{ url('img/nsna.png') }}' name='twitter:image:src'/>
+    @else<meta content='{{ url(null_escape($character->photo, 'img/nsna.png')) }}' name='twitter:image:src'/>
+    @endif
+
+    <meta content='{{ url($_SERVER["REQUEST_URI"]) }}' property='og:url'/>
+    <meta content='@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}' property='og:title'/>
+    <meta content='{{ env('APP_DESC') }}' property='og:description'/>
+    @if (Request::is('/'))<meta content='{{ url('img/nsna.png') }}' property='og:image'/>
+    @else<meta content='{{ url(null_escape($character->photo, 'img/nsna.png')) }}' property='og:image'/>
+    @endif
+
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
