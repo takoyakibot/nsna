@@ -25,6 +25,7 @@ class CharactersTableSeeder extends Seeder
             'evil' => 24,
             'social' => 21,
             'most_important' => 'リュウ',
+            'photo' => 'img/god.jpg',
             'omote1_id' => 0,
             'omote2_id' => 1,
             'ura1_id' => 2,
