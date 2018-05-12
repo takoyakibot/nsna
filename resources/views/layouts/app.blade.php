@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- カード表示 -->
-    <meta content='summary' name='twitter:card'/>
+    <meta content='summary_large_image' name='twitter:card'/>
     <meta content='{{ url('/') }}' name='twitter:domain'/>
     <meta content='{{ url($_SERVER["REQUEST_URI"]) }}' name='twitter:url'/>
     <meta content='@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}' name='twitter:title'/>
