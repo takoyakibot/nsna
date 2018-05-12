@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
 use App\Character;
 use App\Ore;
 use League\Flysystem\Exception;
@@ -69,6 +70,25 @@ class CharacterController extends Controller
     {
         $character = null_escape(Character::where('id_rand', $id_rand)->first(), new Character);
 
+        // 画像を保存
+        // 画像が選択されていれば保存する
+        foreach ($_FILES as $file)
+        {
+            // 各種情報の取得
+            $tmp_name = $file['tmp_name'];
+            $size = $file['size'];
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+            if (exif_imagetype($tmp_name) && $size < 120000)
+            {
+                $f = fopen($tmp_name, 'rb');
+                $b = fread($f, $size);
+                $imgpath = '/img/upload/' . $id_rand . '.' . $ext;
+                $savepath = $_SERVER['DOCUMENT_ROOT'] . $imgpath;
+                file_put_contents($savepath, $b);
+            }
+        }
+
         // $character情報を更新する
         if (empty($character->id_rand)) $character->id_rand = $id_rand;
         $character->password_hash = $request->password_hash;
@@ -82,6 +102,7 @@ class CharacterController extends Controller
         $character->evil = $request->evil;
         $character->social = $request->social;
         $character->most_important = $request->most_important;
+        $character->photo = $imgpath;
         $character->omote1_id = $request->omote1_id;
         $character->omote1_free = $request->omote1_free;
         $character->omote2_id = $request->omote2_id;

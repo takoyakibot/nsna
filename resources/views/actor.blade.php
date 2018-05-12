@@ -102,8 +102,23 @@ $kill_list = [
         var hash = shaObj.getHash("HEX");
         return hash;
     }
+
+    // 画像プレビュー
+    function photoKazaru(file)
+    {
+        document.f.photo.src = window.URL.createObjectURL(file);
+        if (file.size > 100000) alert('保存されるファイルサイズの上限は約100KBです。');
+
+//        var fileReader = new FileReader();
+//        fileReader.onload = function () {
+//            if (this.result.length > 300000) alert("でかない？");
+//            else document.f.photo_data_uri.value = this.result;
+//        }
+//        fileReader.readAsDataURL(file)
+    }
 </script>
-<form action="{{ url('actor/'.$character->id_rand) }}" method="post" name="f">
+
+<form action="{{ url('actor/'.$character->id_rand) }}" method="post" name="f" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('POST') }}
     <div class="container">
@@ -134,7 +149,7 @@ $kill_list = [
                                 現在値：<select name="good" style="font-size: small;">
                                     @for ($i = 0; $i <= 24; $i++) <option value="{{ $i }}" @if ($i == null_escape($character->good, $good)) selected @endif>{{ $i }}</option> @endfor
                                 </select>
-                                <span class="d-none">　/　</span>
+                                <span class="d-none d-md-inline">　/　</span>
                                 <span class="d-md-none"><br></span>
                                 初期値：{{ $good }}
                             </label>
@@ -145,7 +160,7 @@ $kill_list = [
                                 現在値：<select name="evil" style="font-size: small;">
                                     @for ($i = 0; $i <= 24; $i++) <option value="{{ $i }}" @if ($i == null_escape($character->evil, $evil)) selected @endif>{{ $i }}</option> @endfor
                                 </select>
-                                <span class="d-none">　/　</span>
+                                <span class="d-none d-md-inline">　/　</span>
                                 <span class="d-md-none"><br></span>
                                 初期値：{{ $evil }}
                             </label>
@@ -156,7 +171,7 @@ $kill_list = [
                                 現在値：<select name="social" style="font-size: small;">
                                     @for ($i = 0; $i <= 33; $i++) <option value="{{ $i }}" @if ($i == null_escape($character->social, $social)) selected @endif>{{ $i }}</option> @endfor
                                 </select>
-                                <span class="d-none">　/　</span>
+                                <span class="d-none d-md-inline">　/　</span>
                                 <span class="d-md-none"><br></span>
                                 初期値：{{ $social }}
                             </label>
@@ -172,11 +187,20 @@ $kill_list = [
                     <div class="row px-1 mb-3">
                         <label for="photo" class="col-form-label col-12 mb-1 no-border bg-light text-center">在りし日の写真</label>
                         <label class="col-form-label col-12 mb-1 no-border bg-light text-center">
-                            <img src="{{ url(null_escape($character->photo, 'img/nsna.png')) }}" class="my-1 bg-white">
+                            <img name="photo" src="{{ url(null_escape($character->photo, 'img/nsna.png')) }}" class="my-1 bg-white">
                         </label>
-                        <label class="col-12 col-form-label text-right"><span class="btn disabled btn-info py-1">写真を飾る<input type="file" disabled style="display:none;"></span></label>
+                        <div class="col-12 text-right">
+                            <label class="col-form-label">
+                            <span class="btn btn-info py-1">
+                                写真を飾る
+                                <input id="kazaru" name="kazaru" onchange="photoKazaru(this.files[0]);" type="file" style="display:none;">
+                            </span>
+                            </label>
+                        </div>
                     </div>
                 </div>
+
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000">
             </div>
 
             <div class="row">
@@ -267,5 +291,6 @@ $kill_list = [
         </div>
     </div>
 </form>
+
 @endsection
 
