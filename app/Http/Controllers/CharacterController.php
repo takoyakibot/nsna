@@ -127,4 +127,16 @@ class CharacterController extends Controller
         return redirect('/actor/'.$character->id_rand);
     }
 
+
+    protected function textshow($id_rand)
+    {
+        $character = null_escape(Character::where('id_rand', $id_rand)->first(), new Character);
+
+        return view('text')->with([
+            'character' => $character,
+            'ore' => $this->getOre($character),
+        ]);
+    }
+
+
 }

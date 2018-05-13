@@ -53,7 +53,7 @@
 @endforeach
 <br>
 裏の顔：<br>
-@foreach ([2,3,4,5] as $i){{ null_escape($ore[$i]->text1) }}@if (! empty($ore[$i]->text2)){{ old('ura'.($i-1).'_free', null_escape($ore_free_list[$i])) }}{{null_escape($ore[$i]->text2) }} @endif {{ $ore_footer_list[$i] }}</p>
+@foreach ([2,3,4,5] as $i){{ null_escape($ore[$i]->text1) }}@if (! empty($ore[$i]->text2)){{ old('ura'.($i-1).'_free', null_escape($ore_free_list[$i])) }}{{null_escape($ore[$i]->text2) }} @endif {{ $ore_footer_list[$i] }}<br>
 @endforeach
 <br>
 『殺ス』リスト<br>
@@ -62,5 +62,5 @@
 メモ<br>
 {{ null_escape($character->memo) }}<br>
 <br>
-@endsection
+
 

@@ -123,7 +123,8 @@ $kill_list = [
     {{ method_field('POST') }}
     <div class="container">
         <h1>もう誰も横浜の果てで涙という名の同窓会だけ見えないRPG</h1>
-        <p class="text-muted">※新規作成時にリロードすると表の顔・裏の顔は変更されます。</p>
+        <p class="text-muted">※新規作成時にリロードすると表の顔・裏の顔は変更されます。<br>
+        <a href="{{ url('/actor/'.$character->id_rand.'/text/') }}">テキスト表示</a>（データの保存が必要です）</p>
 
         <div class="px-3">
             <div class="form-group row actor-row">
