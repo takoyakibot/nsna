@@ -79,7 +79,7 @@ class CharacterController extends Controller
             $size = $file['size'];
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
 
-            if (exif_imagetype($tmp_name) && $size < 120000)
+            if ($tmp_name && exif_imagetype($tmp_name) && $size < 120000)
             {
                 $f = fopen($tmp_name, 'rb');
                 $b = fread($f, $size);
