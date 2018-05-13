@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container character-list">
+
+        <div class="mb-3 text-center">
+            <img src="{{ url(env('APP_IMG')) }}">
+        </div>
+
         <div class="row mb-3">
             <div class="col-6">
                 {{ $characters->links() }}
@@ -17,7 +22,7 @@
             @foreach ($characters as $c)
             <div class="card">
                 <a href="{{ url('/actor/'.$c->id_rand) }}">
-                    <img class="card-img-top" src="{{ url(null_escape($c->photo, 'img/nsna.png')) }}">
+                    <img class="card-img-top" src="{{ url(null_escape($c->photo, 'img/nsna2.png')) }}" @if (! $c->photo) style="opacity: 0.3;" @endif>
                     <div class="card-header text-center">
                         <h4 class="card-title text-dark mb-0">{{ null_escape($c->player_name, '近日公開') }}</h4>
                         <p class="card-text text-dark">{{ null_escape($c->actor_name, '近日公開') }} 役</p>

@@ -13,15 +13,15 @@
     <meta content='{{ url($_SERVER["REQUEST_URI"]) }}' name='twitter:url'/>
     <meta content='@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}' name='twitter:title'/>
     <meta content='{{ env('APP_DESC') }}' name='twitter:description'/>
-    @if (Request::is('/'))<meta content='{{ url('img/nsna.png') }}' name='twitter:image:src'/>
-    @else<meta content='{{ url(null_escape($character->photo, 'img/nsna.png')) }}' name='twitter:image:src'/>
+    @if (Request::is('/'))<meta content='{{ url(env('APP_IMG')) }}' name='twitter:image:src'/>
+    @else<meta content='{{ url(null_escape($character->photo, env('APP_IMG'))) }}' name='twitter:image:src'/>
     @endif
 
     <meta content='{{ url($_SERVER["REQUEST_URI"]) }}' property='og:url'/>
     <meta content='@if (! Request::is('/')){{ $title }} | @endif{{ env('APP_NAME') }}' property='og:title'/>
     <meta content='{{ env('APP_DESC') }}' property='og:description'/>
-    @if (Request::is('/'))<meta content='{{ url('img/nsna.png') }}' property='og:image'/>
-    @else<meta content='{{ url(null_escape($character->photo, 'img/nsna.png')) }}' property='og:image'/>
+    @if (Request::is('/'))<meta content='{{ url(env('APP_IMG')) }}' property='og:image'/>
+    @else<meta content='{{ url(null_escape($character->photo, env('APP_IMG'))) }}' property='og:image'/>
     @endif
 
 
