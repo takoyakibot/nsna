@@ -74,6 +74,8 @@ class CharacterController extends Controller
         // 画像が選択されていれば保存する
         foreach ($_FILES as $file)
         {
+            $imgpath = null;
+
             // 各種情報の取得
             $tmp_name = $file['tmp_name'];
             $size = $file['size'];
