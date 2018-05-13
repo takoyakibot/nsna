@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- カード表示 -->
-    @if (Request::is('/'))<meta content='summary' name='twitter:card'/>
+    @if (Request::is('/'))<meta content='summary_large_image' name='twitter:card'/>
     @else<meta content='summary_large_image' name='twitter:card'/>
     @endif
     <meta content='{{ url('/') }}' name='twitter:domain'/>
