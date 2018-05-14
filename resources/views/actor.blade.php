@@ -192,7 +192,7 @@ $kill_list = [
                         </label>
                         <div class="col-12 text-right">
                             <label class="col-form-label">
-                            <span class="btn btn-info py-1">
+                            <span class="btn btn-info py-1 disabled">
                                 写真を飾る
                                 <input id="kazaru" name="kazaru" onchange="photoKazaru(this.files[0]);" type="file" style="display:none;">
                             </span>
