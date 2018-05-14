@@ -88,7 +88,7 @@ class CharacterController extends Controller
                 $imgpath = '/img/upload/' . $id_rand . '.' . $ext;
                 $savepath = $_SERVER['DOCUMENT_ROOT'] . $imgpath;
                 try {file_put_contents($savepath, $b);}
-                catch (Exception $e) { $imgpath = $e; }
+                catch (Exception $e) { return dd($e); }
             }
         }
 
