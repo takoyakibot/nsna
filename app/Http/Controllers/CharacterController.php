@@ -105,7 +105,7 @@ class CharacterController extends Controller
         $character->evil = $request->evil;
         $character->social = $request->social;
         $character->most_important = $request->most_important;
-        $character->photo = $imgpath;
+//        $character->photo = $imgpath;
         $character->omote1_id = $request->omote1_id;
         $character->omote1_free = $request->omote1_free;
         $character->omote2_id = $request->omote2_id;
