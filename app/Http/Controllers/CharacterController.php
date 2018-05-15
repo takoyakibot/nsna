@@ -81,14 +81,13 @@ class CharacterController extends Controller
             $size = $file['size'];
             $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
 
-            if ($tmp_name && exif_imagetype($tmp_name) && $size < 120000)
-            {
+            if ($tmp_name && exif_imagetype($tmp_name) && $size < 120000) {
                 $f = fopen($tmp_name, 'rb');
                 $b = fread($f, $size);
                 $imgpath = '/img/upload/' . $id_rand . '.' . $ext;
-                $savepath = $_SERVER['DOCUMENT_ROOT'] . $imgpath;
-                try {file_put_contents($savepath, $b);}
-                catch (Exception $e) { return dd($e); }
+                $savepath = env('APP_UPLOAD', $_SERVER['DOCUMENT_ROOT']) . $imgpath;
+
+                if (file_exists($savepath)) file_put_contents($savepath, $b);
             }
         }
 
@@ -105,7 +104,7 @@ class CharacterController extends Controller
         $character->evil = $request->evil;
         $character->social = $request->social;
         $character->most_important = $request->most_important;
-        $character->photo = $imgpath;
+        if (file_exists($savepath)) $character->photo = $imgpath;
         $character->omote1_id = $request->omote1_id;
         $character->omote1_free = $request->omote1_free;
         $character->omote2_id = $request->omote2_id;
