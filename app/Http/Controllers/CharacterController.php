@@ -87,7 +87,8 @@ class CharacterController extends Controller
                 $imgpath = '/img/upload/' . $id_rand . '.' . $ext;
                 $savepath = env('APP_UPLOAD', $_SERVER['DOCUMENT_ROOT']) . $imgpath;
 
-                if (file_exists($savepath)) file_put_contents($savepath, $b);
+                // 一応DIRの存在確認をしておく（遅い
+                if (file_exists(pathinfo($savepath, PATHINFO_DIRNAME))) file_put_contents($savepath, $b);
             }
         }
 
@@ -104,7 +105,7 @@ class CharacterController extends Controller
         $character->evil = $request->evil;
         $character->social = $request->social;
         $character->most_important = $request->most_important;
-        if (file_exists($savepath)) $character->photo = $imgpath;
+        $character->photo = file_exists($savepath) ? $imgpath : null;
         $character->omote1_id = $request->omote1_id;
         $character->omote1_free = $request->omote1_free;
         $character->omote2_id = $request->omote2_id;
