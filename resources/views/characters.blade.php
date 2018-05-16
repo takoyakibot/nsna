@@ -8,8 +8,6 @@
             <img src="{{ url(env('APP_IMG')) }}">
         </div>
 
-        <div class="my-3 text-muted">現在、画像アップロードが本番環境でのみなんかうまくいかないという運命濁流表に飲み込まれております……</div>
-
         <div class="row mb-3">
             <div class="col-6">
                 {{ $characters->links() }}
